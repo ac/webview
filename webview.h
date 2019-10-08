@@ -141,7 +141,7 @@ inline int json_parse_c(const char *s, size_t sz, const char *key, size_t keysz,
   int utf8_bytes = 0;
 
   if (key == NULL) {
-    index = keysz;
+    index = (int)keysz;
     keysz = 0;
   }
 
@@ -680,7 +680,7 @@ public:
               w->terminate();
               break;
             default:
-              return DefWindowProc(hwnd, msg, wp, lp);
+              return (int)DefWindowProc(hwnd, msg, wp, lp);
             }
             return 0;
           });
@@ -1102,7 +1102,7 @@ private:
   void resize() {
     RECT r;
     GetClientRect(m_window, &r);
-    Rect bounds(r.left, r.top, r.right - r.left, r.bottom - r.top);
+    Rect bounds((float)r.left, (float)r.top, (float)(r.right - r.left), (float)(r.bottom - r.top));
     m_webview.Bounds(bounds);
   }
   WebViewControlProcess m_process;
